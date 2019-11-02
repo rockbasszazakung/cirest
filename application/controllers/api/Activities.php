@@ -77,5 +77,5 @@ class Activities extends API_Controller{
             'response' => $result
         ],REST_Controller::HTTP_OK);
     }
-    
 }
+    

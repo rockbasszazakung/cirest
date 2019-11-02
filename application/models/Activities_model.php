@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -30,3 +31,17 @@ class Activities_model extends CI_Model{
         return $this->db->delete($this->tbl_name);  
     }
 }  
+=======
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Activities_model extends CI_Model{
+    private $tbl_name = "activities";
+
+    function get_all($keyword){
+        $this->db->like('activities_name',$keyword);
+        $result = $this->db->get($this->tbl_name);
+        return $result->result();
+    }
+}
+>>>>>>> a2cceffee55bc4a902cdb4dbccc9b74cc7c52baf
