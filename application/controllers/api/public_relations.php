@@ -21,6 +21,25 @@ class Activities extends API_Controller{
         //     'message' => []
         // ],REST_Controllers::HTTP_CONFLICT);
     }
+    function post_create_post(){
+        $public_name = $this->input->post('public_name');
+        $user_id = $this->input->post('user_id');
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+        $data = [
+            'public_id' => null,
+            'public_name' => $public_name,
+            'user_id' => $user_id,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'status' => 0
+        ];
+        $result = $this->activities_model->insert($data);
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
+    }
     
     
 }
