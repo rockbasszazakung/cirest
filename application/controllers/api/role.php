@@ -5,7 +5,15 @@ class role extends API_Controller{
         parent::__construct();
         $this->load->model('role_models');
     }
-    function post_insert_post(){
+    function get_all_get(){
+        $keywoed = $this->get('keyword');
+        $result = $this->role_models->get_all($keywoed);
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
+    }
+    function post_create_post(){
         $position_id = $this->input->post('position_id');
         $position = $this->input->post('position');
         $data = [
@@ -20,4 +28,36 @@ class role extends API_Controller{
             'response' => $result
         ],REST_Controller::HTTP_OK);
     }
+    function get_select_get(){
+        $result = $this->role_models->allActivities();
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
+    }
+    function post_update_post(){
+        $role_id = $this->input->post('role_id');
+        $position_id = $this->input->post('position_id');
+        $position = $this->input->post('position');
+        $data = [
+            'role_id' => $role_id,
+            'position_id' => $position_id,
+            'position' => $position,
+            'status' => 0
+        ];
+        $result = $this->role_models->update($data);
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
+    }
+    function get_delete_get(){
+        $role_id = $this->input->get('role_id');
+        $result = $this->role_models->delete($role_id);
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
+    }
+
 }
